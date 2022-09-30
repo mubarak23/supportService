@@ -8,8 +8,8 @@ import { IAccessTokenData } from "../interfaces/IAccessTokenData";
 import { BadRequestError, UnauthorizedRequestError } from "../utils/error-response-types";
 import IProfile from "../dto/IProfileResponse";
 
-@Route("/api/auth")
-@Tags("Auth Service")
+@Route("/api/agent")
+@Tags("Agent Service")
 @Security("jwt")
 export class AgentController {
 
