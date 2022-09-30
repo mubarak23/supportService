@@ -1,3 +1,4 @@
+import { ICloudFile } from "../interfaces/ICloudFile";
 
 interface IProfile {
   userUuid: string,
@@ -5,5 +6,7 @@ interface IProfile {
   lastName: string,
   phoneNumber: string,
   emailAddress: string,
-  photoUrl: string,
+  photoUrl: ICloudFile,
 }
+
+export default IProfile
