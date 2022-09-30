@@ -3,5 +3,5 @@ export interface IAgentSignupDto {
     lastName: string;
     emailAddress: string;
     phoneNumber: string;
-    passwod: string
+    password: string
 }
