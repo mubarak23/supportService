@@ -1,12 +1,10 @@
 import { ICloudFile } from "../interfaces/ICloudFile";
 
-interface IProfile {
+export interface IProfile {
   userUuid: string,
   firstName: string,
   lastName: string,
   phoneNumber: string,
   emailAddress: string,
-  photoUrl: ICloudFile,
+  photo: ICloudFile,
 }
-
-export default IProfile

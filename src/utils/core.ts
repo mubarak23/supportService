@@ -6,11 +6,21 @@ import validator from 'validator';
 import { AxiosError } from 'axios'
 import bcrypt from "bcrypt";
 import { BadRequestError } from './error-response-types'
+import { FileCloudProviders } from '../enums/FileUpload';
 
 
 
 export function isNullOrUndefined<T>(obj: T | null | undefined): obj is null | undefined {
 	return typeof obj === "undefined" || obj === null
+}
+
+export const userDefaultAvatarCloudFile = () => {
+  return {
+    keyFromCloudProvider: '',
+    url: 'https://res.cloudinary.com/trade-grid/image/upload/v1618526995/default_profile_pic_pwfk1s.png',
+    mimetype: 'image/png',
+    fileCloudProvider: FileCloudProviders.CLOUDINARY,
+  }
 }
 
 export const validateAJoi = (joiSchema: Joi.AnySchema, object: any): boolean => {

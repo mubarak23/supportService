@@ -32,10 +32,12 @@ export enum UserColumns {
 
 export enum TicketColumns {
   UUID = "ticket_uuid",
-  ASSIGN_TO = "assign_to",
+  USER_ID = "user_id",
   NAME = "name",
   DESCRIPTION = "description",
-  PHOTO = "photo"
+  CUSTOMER_EMAIL = "customer_email",
+  STATUS = "status",
+  IMAGES = "images"
 }
 
 export enum CronRunColumns {
