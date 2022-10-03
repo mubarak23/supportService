@@ -6,7 +6,7 @@ import * as Utils from "../utils/core"
 import * as ProfileService from "../services/profileService";
 import { IAccessTokenData } from "../interfaces/IAccessTokenData";
 import { BadRequestError, UnauthorizedRequestError } from "../utils/error-response-types";
-import IProfile from "../dto/IProfileResponse";
+import { IProfile } from "../dto/IProfileResponse";
 
 @Route("/api/agent")
 @Tags("Agent Service")
@@ -20,7 +20,7 @@ export class AgentController {
         const resData : IServerResponse<IProfile> = {
             status: true,
             data: agentProfile,
-            message: "Agent Account Created Successfully"
+            message: "Agent Profile"
         }
         return resData
 

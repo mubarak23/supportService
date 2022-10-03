@@ -25,7 +25,7 @@ export class Ticket extends DefualtEntity {
   customerEmail: string;
 
   @Column({ name: TicketColumns.USER_ID, nullable: false})
-  userId: string;
+  userId: number;
 
   @ManyToOne(() => User, { primary: true }) // User can have many tickets assign to him
   @JoinColumn({
@@ -43,7 +43,7 @@ export class Ticket extends DefualtEntity {
 
   
 
-  initialize(name: string, description: string, userId: string, customerEmail: string){
+  initialize(name: string, description: string, userId: number, customerEmail: string){
     const now = utcNow();
     this.uuid = uuidv4();
     this.name = name;

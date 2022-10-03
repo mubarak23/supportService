@@ -8,7 +8,7 @@ export interface TicketResponseDto {
     customerEmail: string,
     agentProfile: IProfile
     status: TicketStatuses,
-    images: {
+    images?: {
         url: string,
         mimetype: string,
       }[]

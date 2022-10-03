@@ -5,13 +5,16 @@ import { In } from "typeorm"
 
 
 export const agentPublicProfile = async (currentUser: User): Promise<IProfile> => {
+    const connection = await getFreshConnection()
+    const userRepo = connection.getRepository(User)
+    const userDetails = await userRepo.findOne({ uuid: currentUser.uuid})
     const resProfile: IProfile =  {
         userUuid: currentUser.uuid,
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
-        phoneNumber: currentUser.phoneNumber,
-        emailAddress: currentUser.emailAddress,
-        photo: currentUser.photo
+        firstName: userDetails.firstName,
+        lastName: userDetails.lastName,
+        phoneNumber: userDetails.phoneNumber,
+        emailAddress: userDetails.emailAddress,
+        photo: userDetails.photo
     }
     return resProfile
 }

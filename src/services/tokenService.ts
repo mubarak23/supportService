@@ -13,8 +13,8 @@ export const getAccessToken = async (exisitingUser: User): Promise<IAccessTokenD
         emailAddress: exisitingUser.emailAddress,
         phoneNumber: exisitingUser.phoneNumber
     }
-    const jwtSecret: string = (process.env.JWT_SECRET as string)
-
+    const jwtSecret: string = (process.env.JWT_SECRET as string) || 'rth5766d'
+    console.log(jwtSecret)
     const generatedToken = jwt.sign(tokeForUser, jwtSecret, {
         expiresIn: Rest.JWT_TIMEOUT
     })

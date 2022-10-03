@@ -16,15 +16,16 @@ export async function paginate<T extends ObjectType<BaseEntity>>(
   } catch(e) {
     throw new BadRequestError(`Specify a valid page number`)
   }
-  const pageNumber = Number(page)
 
+  const pageNumber = Number(page)
+ 
   const connection = await getFreshConnection()
   const repo = connection.getRepository(entityClass)
 
   const totalNumber = await repo.count(query)
 
   const offset = (pageNumber - 1) * pageSize
-
+  
   if(offset > totalNumber) {
     const resData = {
       pageNumber,
