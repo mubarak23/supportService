@@ -1,5 +1,5 @@
 
-import { Get, Route, Tags, Request, Query, Security, Post, Body } from "tsoa";
+import { Get, Route, Tags, Request, Query, Security, Post, Body, Path, Put } from "tsoa";
 import { getFreshConnection } from "../db";
 import { TicketResponseDto } from "../dto/TicketResponseDto";
 import * as paginationService from "../services/paginationService";
@@ -103,5 +103,33 @@ public async handleNewTicket(@Body() reqBody: INewTicketDto): Promise<IServerRes
     }
     return resData
 }
+
+@Security("jwt")
+@Put('/updateTicket/:ticketUuid/:newTicketStatus')
+public async handleUpdateTicketStatus( 
+    @Request() req: any,
+    @Path("ticketUuid") ticketUuid: string,
+    @Path("newTicketStatus") newTicketStatus: TicketStatuses): Promise<IServerResponse<void>>{
+    const cureentUser: User = req.user
+
+    const connection = await getFreshConnection()
+    const ticketRepo = connection.getRepository(Ticket)
+    const ticketDetails = await ticketRepo.findOne({ uuid: ticketUuid})
+    if(ticketDetails || ticketDetails.userId === cureentUser.id){
+        throw new BadRequestError('The Ticket is not Assign to You')
+    }
+    await ticketRepo.createQueryBuilder()
+    .update(Ticket)
+    .set({ status: newTicketStatus })
+    .where({ id: ticketDetails.id })
+    .execute()
+
+    const resData :  IServerResponse<void>  ={
+        status: true
+    }
+    return resData
+}
+
+
 
 }
